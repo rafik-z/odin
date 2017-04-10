@@ -1,0 +1,32 @@
+<h3>Création d'un candidat unique</h3>
+<p-growl [value]="msgs"></p-growl>
+<div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Caractéristique 1</span>
+    <p-dropdown [options]="listeNomsCaracteristiques" [(ngModel)]="candidat.carac1" placeholder="Sélectionner une caractéristique" [style]="{'width':'170px'}" name="none"></p-dropdown>
+</div>
+<br>
+<div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Caractéristique 2</span>
+    <p-dropdown [options]="listeNomsCaracteristiques" [(ngModel)]="candidat.carac2" placeholder="Sélectionner une caractéristique" [style]="{'width':'170px'}" name="none"></p-dropdown>
+</div>
+<br>
+<div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Caractéristique 3</span>
+    <p-dropdown [options]="listeNomsCaracteristiques" [(ngModel)]="candidat.carac3" placeholder="Sélectionner une caractéristique" [style]="{'width':'170px'}" name="none"></p-dropdown>
+</div>
+<br>
+
+
+<button pButton type="button" label="Générer candidat" (click)="genererCandidat(1,1)"></button>
+
+<h3>Générateur aléatoire</h3>
+<div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Nbr. de profils : </span>
+    <p-spinner size="10" [(ngModel)]="nbrProfils" [min]="0" [max]="10000"></p-spinner>
+</div>
+<br>
+<button pButton type="button" label="Générer candidats" (click)="genererCandidat(0,nbrProfils)"></button>
+<label>Feature</label>
+<textarea rows="5" cols="30" pInputTextarea [(ngModel)]="texteFeature"></textarea>
+<label>Label</label>
+<textarea rows="5" cols="30" pInputTextarea [(ngModel)]="texteLabel"></textarea>

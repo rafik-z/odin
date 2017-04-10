@@ -1,0 +1,20 @@
+<p-growl [value]="msgs"></p-growl>
+
+<h3>Ajouter une caractéristique</h3>
+<div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Caractéristique : </span>
+    <input type="text" [(ngModel)]="caracteristiqueAAjouter.denomination" name="carac_a_ajouter" pInputText />
+</div>
+<br>
+<div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Compétence de développement </span>
+    <p-inputSwitch onLabel="Oui" offLabel="Non" [(ngModel)]="checked" name="competence" (input)="caracteristiqueAAjouter.competenceDev = $event.target.value"></p-inputSwitch>
+</div>
+<br>
+<button pButton type="button" (click)="ajouterCaracteristique()" label="Ajouter caractéristique" class="ui-button-secondary"></button>
+<br>
+<br>
+<p-dataTable [value]="listeCaracteristiques">
+    <p-column field="denomination" header="Dénomination"></p-column>
+    <p-column field="competenceDev" header="Compétence dév"></p-column>
+</p-dataTable>
