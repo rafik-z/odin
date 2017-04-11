@@ -1,4 +1,5 @@
 export class Caracteristique{
-    denomination: String;
-    competenceDev: Boolean;
+    public denomination: String;
+    public competenceDev: Boolean;
+    
 }

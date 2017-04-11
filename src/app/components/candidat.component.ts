@@ -13,9 +13,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class CandidatComponent implements OnInit{
     urlRef: string = 'http://10.64.1.128:8080/Odin-0.1/ws/';
     candidat: Candidat;
-    listeCandidats:Array<Candidat>;
-    listeBrute:Array<String>;
-    listeLabels:Array<String>;
+    listeBruteCandidats:Array<String>;
+    listeBruteLabels:Array<String>;
     nbrProfils: number;
     listeCaracteristiques: Array<Caracteristique>;
     listeNomsCaracteristiques: Array<String>;
@@ -29,9 +28,8 @@ export class CandidatComponent implements OnInit{
         this.listeCaracteristiques = new Array<Caracteristique>();
         this.listeNomsCaracteristiques = new Array<String>();
         this.candidat = new Candidat();
-        this.listeCandidats= new Array<Candidat>();
-        this.listeBrute = new Array<String>();
-        this.listeLabels = new Array<String>();
+        this.listeBruteCandidats = new Array<String>();
+        this.listeBruteLabels = new Array<String>();
         this.texteFeature = '';
         this.texteLabel = '';
     }
@@ -56,29 +54,39 @@ export class CandidatComponent implements OnInit{
 
     genererCandidat(affichage:boolean, repetition:number){
 
+        this.listeBruteCandidats = [];
+        this.listeBruteLabels = [];
+        this.texteFeature ="";
+        this.texteLabel="";
         for (var index = 0; index < repetition; index++) {
-            
+            let c1 = this.candidat.carac1
+            let c2 = this.candidat.carac2
+            let c3 = this.candidat.carac3
+            let check = [];
             let candidat:Candidat;
             let score: number;
                 
-                this.candidat.carac1=this.selectionCaracteristique();
-                this.candidat.carac2=this.selectionCaracteristique();
-                this.candidat.carac3=this.selectionCaracteristique();
-
-                score = (+ this.candidat.carac1.competenceDev )+(+ this.candidat.carac2.competenceDev) + ( + this.candidat.carac3.competenceDev)
-
-                this.texteFeature = "["+this.candidat.carac1.denomination+","+this.candidat.carac2.denomination+","+this.candidat.carac3.denomination+"]";
-                if (score >=2) {
-                    this.texteLabel="[\"développeur\"]"            
-                }else{
-                    this.texteLabel="[\"autre\"]"
+                c1=this.selectionCaracteristique();
+                c2=this.selectionCaracteristique();
+                while(c1 ==c2){
+                    c2 = this.selectionCaracteristique();
+                }
+                c3=this.selectionCaracteristique();
+                while(c3 == c1 || c3 == c2){
+                c3=this.selectionCaracteristique();
                 }
 
-            
+                score = (+ c1.competenceDev )+(+ c2.competenceDev) + ( + c3.competenceDev)
+                if (score >=2) {
+                    this.listeBruteLabels.push("[\"développeur\"]");            
+                }else{
+                    this.listeBruteLabels.push("[\"autre\"]");
+                }            
 
-                this.listeBrute.push("["+this.candidat.carac1.denomination + ", " + this.candidat.carac2.denomination+ ", "  + this.candidat.carac3.denomination+ "]" ); 
+                this.listeBruteCandidats.push("[\""+c1.denomination + "\", \"" + c2.denomination+ "\", \""  + c3.denomination+ "\"]" ); 
         }               
-                this.texteFeature = "feature = ["+this.listeBrute.toString()+"]";    
+                this.texteFeature = "candidats = ["+this.listeBruteCandidats.toString()+"]";  
+                this.texteLabel = "titres = ["+this.listeBruteLabels.toString()  +"]";
 
     }
 

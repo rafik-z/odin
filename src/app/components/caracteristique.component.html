@@ -1,4 +1,9 @@
 <p-growl [value]="msgs"></p-growl>
+<ul>
+    <li *ngFor="let item of listcar">
+        <h1>{{item.denomination}}</h1>
+    </li>
+</ul>
 
 <h3>Ajouter une caractéristique</h3>
 <div class="input-group">
@@ -14,7 +19,7 @@
 <button pButton type="button" (click)="ajouterCaracteristique()" label="Ajouter caractéristique" class="ui-button-secondary"></button>
 <br>
 <br>
-<p-dataTable [value]="listeCaracteristiques">
+<p-dataTable [value]="listcar">
     <p-column field="denomination" header="Dénomination"></p-column>
     <p-column field="competenceDev" header="Compétence dév"></p-column>
 </p-dataTable>

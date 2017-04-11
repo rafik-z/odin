@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Caracteristique } from "../domain/caracteristique";
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { Caracteristique } from '../domain/caracteristique';
 import { Http, Response, Headers } from '@angular/http';
 import { Message } from 'primeng/primeng';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { ActivatedRoute, Router } from "@angular/router";
+import { CaracteristiquesService } from '../services/caracteristiques.service';
+import { Observable } from 'rxjs/Observable';
 @Component({
     selector:'hep-carac',
-    templateUrl:'./caracteristique.component.html'
+    templateUrl:'./caracteristique.component.html',
+    providers: [CaracteristiquesService]
 })
 
 export class CaracteristiqueComponent implements OnInit{
@@ -17,22 +20,26 @@ export class CaracteristiqueComponent implements OnInit{
     caracteristiqueAAjouter: Caracteristique;
     listeCaracteristiques: Array<Caracteristique>;
     checked:Boolean = false;
+    listcar: Caracteristique[];
     public msgs:Message[]=[];
 
 constructor(private route: ActivatedRoute,
                 private router: Router,
-                private http:Http){
+                private http:Http, private caracteristiquesService:CaracteristiquesService){
         this.listeCaracteristiques = new Array<Caracteristique>();
         this.caracteristiqueAAjouter = new Caracteristique();
 
 }
 
 ngOnInit(){
+                    console.log(this.listcar);
         this.http.get(this.urlRef)
         .toPromise()
         .then(reponse => this.listeCaracteristiques = reponse.json() as Array<Caracteristique>)
         .then(() => this.msgs.push({severity:'info', summary:'Liste',detail:'Caractéristiques chargées avec succés!'}))
         .catch(() => this.msgs.push({severity:'error', summary:'Liste',detail:'Chargment impossible.'}));
+        this.recupererCaracteristiques();
+        console.log("ok");
 }
 
 ajouterCaracteristique():void{
@@ -48,10 +55,8 @@ this.caracteristiqueAAjouter.competenceDev = this.checked;
 }
 
 recupererCaracteristiques(){
-    
-        this.http.get(this.urlRef)
-              .toPromise()
-              .then(reponse => this.listeCaracteristiques = reponse.json() as Array<Caracteristique>);
+    this.caracteristiquesService.recupererCaracteristiques().subscribe(car => this.listcar = car);
+    console.log("recup")
 }
 effacerInput(){
     this.caracteristiqueAAjouter.denomination = null;
