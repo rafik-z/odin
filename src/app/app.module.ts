@@ -5,25 +5,27 @@ import { HttpModule } from '@angular/http';
 
 import { MenuModule, MenubarModule,  DropdownModule, SpinnerModule, 
         InputTextModule,InputTextareaModule, InputMaskModule, ButtonModule, DataTableModule,
-        SharedModule, InputSwitchModule, GrowlModule } from 'primeng/primeng';
+        SharedModule, InputSwitchModule, GrowlModule, FileUploadModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { CaracteristiqueComponent } from "./components/caracteristique.component";
 import { CandidatComponent } from "./components/candidat.component";
 
 import { routing } from './app.routes';
+import { ExtractionComponent } from './components/extraction.component';
 
 @NgModule({
   declarations: [
     AppComponent, CaracteristiqueComponent,
-    CandidatComponent
+    CandidatComponent, ExtractionComponent
   ],
   imports: [
     routing, BrowserModule, SpinnerModule,
     FormsModule, InputTextModule, MenubarModule,
     HttpModule, ButtonModule, InputMaskModule,
     DataTableModule, InputSwitchModule, GrowlModule, 
-    DropdownModule, SharedModule, InputTextareaModule
+    DropdownModule, SharedModule, InputTextareaModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

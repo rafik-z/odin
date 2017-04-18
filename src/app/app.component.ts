@@ -16,6 +16,9 @@ export class AppComponent implements OnInit{
         },
         {
             label:'Candidat', url:'/candidat'
+        },
+        {
+            label:'Extraction', url:'/extraction'
         }];
   }
 }
