@@ -5,13 +5,17 @@ import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class CaracteristiquesService{
-    urlRef: string = 'http://10.64.1.128:8080/Odin-0.1/ws/';
+    urlRef: string = 'http://10.64.1.107:8080/Odin-0.1/ws/caracteristique/';
     headers: Headers;
 
     constructor(private http:Http){}
 
     recupererCaracteristiques(): Observable<Caracteristique[]>{
         return this.http.get(this.urlRef).map((res:Response) => res.json());
+    }
+
+    supprimerCaracteristique(val:String){
+        return this.http.delete(this.urlRef+val);
     }
 
     extraireDonnees(pdf: File):Observable<String>{

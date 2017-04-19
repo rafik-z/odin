@@ -11,8 +11,12 @@ export class ExtractionComponent{
 constructor(private caracteristiquesService: CaracteristiquesService){}
     texte: String;
     myfile: any[] = [];
+    donneesBrutes: String;
 
     extraireDonnees(pdf: File){
-        this.caracteristiquesService.extraireDonnees(pdf).subscribe(data => this.texte = data, ()=> console.log("fail"), () => console.log(this.texte));
+        this.caracteristiquesService.extraireDonnees(pdf)
+        .subscribe((data:String) => this.texte = data, 
+        () => console.log("fail"), 
+        () => console.log("OK"));
     }
 }

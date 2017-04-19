@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { MenuModule, MenubarModule,  DropdownModule, SpinnerModule, 
+import { ContextMenuModule, MenuModule, MenubarModule,  DropdownModule, SpinnerModule, 
         InputTextModule,InputTextareaModule, InputMaskModule, ButtonModule, DataTableModule,
         SharedModule, InputSwitchModule, GrowlModule, FileUploadModule } from 'primeng/primeng';
 
@@ -25,7 +25,7 @@ import { ExtractionComponent } from './components/extraction.component';
     HttpModule, ButtonModule, InputMaskModule,
     DataTableModule, InputSwitchModule, GrowlModule, 
     DropdownModule, SharedModule, InputTextareaModule,
-    FileUploadModule
+    FileUploadModule, ContextMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

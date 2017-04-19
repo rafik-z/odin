@@ -1,1 +1,3 @@
-<p-fileUpload name="myfile[]" url="http://10.64.1.128:8080/Odin-0.1/ws/extraction" (onUpload)="extraireDonnees($event)"></p-fileUpload>
+<p-fileUpload name="myfile[]" url="file:///D:/test/" (onUpload)="extraireDonnees($event)"></p-fileUpload>
+<br>
+<textarea rows="25" cols="80" pInputTextarea [(ngModel)]="donneesBrutes"></textarea>
