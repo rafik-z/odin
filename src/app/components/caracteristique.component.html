@@ -20,9 +20,10 @@
 <button pButton type="button" (click)="ajouterCaracteristique()" label="Ajouter caractéristique" class="ui-button-secondary"></button>
 <br>
 <br>
-<p-dataTable [value]="listcar" selectionMode="single"  [(selection)]="caracteristiqueSelectionnee" [contextMenu]="cm">
-    <p-column field="denomination" header="Dénomination"></p-column>
-    <p-column field="competenceDev" header="Compétence dév"></p-column>
+<p-dataTable #dt [value]="listcar" selectionMode="single" [sortMode]="multiple" [reorderableColumns]="true" [(selection)]="caracteristiqueSelectionnee" [contextMenu]="cm" [scrollable]="true" scrollHeight="250px">
+    <p-column field="denomination" header="Dénomination" sortable="true"></p-column>
+    <p-column field="competenceDev" header="Compétence dév" sortable="true"></p-column>
 </p-dataTable>
+<button pButton type="button" (click)="exportCSV(dt)" label="Exporter CSV" class="ui-button-secondary"></button>
 
 <p-contextMenu #cm [model]="items"></p-contextMenu>

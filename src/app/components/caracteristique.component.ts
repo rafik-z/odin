@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import { ActivatedRoute, Router } from "@angular/router";
 import { CaracteristiquesService } from '../services/caracteristiques.service';
 import { Observable } from 'rxjs/Observable';
+import { DataTable } from "primeng/components/datatable/datatable";
 @Component({
     selector:'hep-carac',
     templateUrl:'./caracteristique.component.html',
@@ -59,12 +60,12 @@ export class CaracteristiqueComponent implements OnInit{
     }
 
     recupererCaracteristiques(){
-        this.caracteristiquesService.recupererCaracteristiques().subscribe(car => this.listcar = car);
+        this.caracteristiquesService.recupererCaracteristiques()
+                                    .subscribe(car => this.listcar = car);
     }
 
     effacerInput(){
         this.caracteristiqueAAjouter.denomination = null;
-        this.checked = false;
     }
 
     modificationCaracteristique(truc){
@@ -77,6 +78,10 @@ export class CaracteristiqueComponent implements OnInit{
             () => console.log(), 
             () => this.msgs.push({severity:'error', summary:'Caractéristique',detail:'Suppression impossible.'}),
             () => {this.recupererCaracteristiques(), this.msgs.push({severity:'info', summary:'Caractéristique',detail:'Suppression réussie.'})});
+    }
+
+    exportCSV(dt: DataTable){
+        dt.exportCSV();
     }
 
 }
