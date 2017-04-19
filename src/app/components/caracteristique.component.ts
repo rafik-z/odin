@@ -1,14 +1,16 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Caracteristique } from '../domain/caracteristique';
+import { ActivatedRoute, Router } from "@angular/router";
 import { Http, Response, Headers } from '@angular/http';
 import { Message, MenuItem } from 'primeng/primeng';
+import { DataTable } from "primeng/components/datatable/datatable";
 
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import { ActivatedRoute, Router } from "@angular/router";
+
+import { Caracteristique } from '../domain/caracteristique';
 import { CaracteristiquesService } from '../services/caracteristiques.service';
-import { Observable } from 'rxjs/Observable';
-import { DataTable } from "primeng/components/datatable/datatable";
+
 @Component({
     selector:'hep-carac',
     templateUrl:'./caracteristique.component.html',
